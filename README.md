@@ -1,27 +1,27 @@
-# Projeto de Extração e Exportação do Arquivo.pt para Excel
+# Arquivo.pt Data Extraction and Export to Excel
 
-Este projeto em **TypeScript** permite consultar a API do [Arquivo.pt](https://arquivo.pt), recolher todas as capturas arquivadas para vários sites portugueses, e exportar esses dados num ficheiro Excel com uma folha separada para cada site.
-
----
-
-## Funcionalidades
-
-- Consulta paginada automática para obter todos os resultados (capturas) de cada site listado.
-- Extração dos links arquivados (`linkToArchive`) e datas formatadas das capturas (`timestamp`).
-- Criação de um ficheiro Excel (.xlsx) com folhas separadas, uma para cada site.
-- Linha final em cada folha indicando o total de capturas arquivadas.
-- Tratamento simples de erros para impedir que um erro num site pare o processo.
+This **TypeScript** project allows you to query the [Arquivo.pt](https://arquivo.pt) API, retrieve all archived captures for multiple Portuguese sites, and export this data into an Excel file with separate sheets for each site.
 
 ---
 
-## Requisitos
+## Features
 
-- Node.js (versão 14+ recomendada)
-- npm para gerir pacotes
+- Automatic paginated requests to fetch all results (captures) for each listed site.
+- Extraction of archived links (`linkToArchive`) and formatted capture dates (`timestamp`).
+- Creation of an Excel (.xlsx) file with separate sheets, one per site.
+- A final row in each sheet indicating the total number of captures found.
+- Basic error handling to prevent one site’s failure from stopping the whole process.
 
 ---
 
-## Instalação
+## Requirements
 
-Clona este repositório e instala as dependências:
+- Node.js (version 14+ recommended)
+- npm for package management
+
+---
+
+## Installation
+
+Clone this repository and install dependencies:
 
