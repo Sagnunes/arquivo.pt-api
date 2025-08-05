@@ -105,7 +105,7 @@ const CONFIG = {
     apiBaseUrl: 'https://arquivo.pt/textsearch',
     outputFile: 'arquivo_pt_sites.xlsx',
     maxConcurrentRequests: 3,
-    requestDelayMs: 300, // Rate limiting to be respectful to the API
+    requestDelayMs: 300,
 };
 
 /**

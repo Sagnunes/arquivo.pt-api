@@ -241,7 +241,7 @@ function processSitesInBatches(sites) {
  */
 function sanitizeSheetName(name) {
     // Replace invalid characters with underscores
-    return name.replace(/[:\/\\\?\*\[\]]/g, '_');
+    return name.replace(/[:\/\\?*\[\]]/g, '_');
 }
 /**
  * Main function to orchestrate the data fetching and Excel generation
