@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start": "tsc --project tsconfig.json && node dist/index.js"
   },
   "devDependencies": {
     "@types/node": "^24.2.0",
