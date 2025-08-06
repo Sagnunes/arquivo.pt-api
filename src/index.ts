@@ -1,6 +1,8 @@
 import axios from 'axios';
 import * as xlsx from 'xlsx';
 import { setTimeout } from 'timers/promises';
+import * as fs from 'fs';
+import * as path from 'path';
 
 // Enhanced type definitions
 interface Capture {
@@ -18,89 +20,13 @@ interface ApiResponse {
     response_items: Capture[];
 }
 
+// Load sites from JSON file
+const sitesFilePath = path.join(__dirname, 'sites.json');
+const sitesData = JSON.parse(fs.readFileSync(sitesFilePath, 'utf8'));
+
 // Configuration
 const CONFIG = {
-    sites: [
-        "https://proderam2020.madeira.gov.pt/",
-        "https://bene.madeira.gov.pt/",
-        "https://museus.madeira.gov.pt/",
-        "https://bep.madeira.gov.pt/",
-        "https://fornecedores.madeira.gov.pt/",
-        "https://jovemvoluntario.madeira.gov.pt/",
-        "https://plataformajuventude.madeira.gov.pt/",
-        "https://privacidadegegpd.madeira.gov.pt/",
-        "https://privacidade.madeira.gov.pt/",
-        "https://arquivo-abm.madeira.gov.pt/",
-        "https://sipra.madeira.gov.pt/",
-        "https://biblioteca-abm.madeira.gov.pt/",
-        "https://bagxxi.madeira.gov.pt/",
-        "https://digital.madeira.gov.pt/",
-        "https://madeira.gov.pt/",
-        "https://ceha.madeira.gov.pt/",
-        "https://agir.madeira.gov.pt/",
-        "https://abm.madeira.gov.pt/",
-        "https://ahm-abm.madeira.gov.pt/",
-        "https://aia.madeira.gov.pt/",
-        "https://ccmm.madeira.gov.pt/",
-        "https://cinemadeanimacao.conservatorioescoladasartes.com/",
-        "https://colecaomadeiramusica.conservatorioescoladasartes.com/",
-        "https://comeniusregio.conservatorioescoladasartes.com/",
-        "https://cultura.madeira.gov.pt/",
-        "https://dica.madeira.gov.pt/",
-        "https://educareprevenir.madeira.gov.pt/",
-        "https://escolaagricola.madeira.gov.pt/",
-        "https://espaco.madeira.gov.pt/",
-        "https://ezm.madeira.gov.pt/",
-        "https://festivaldeorgao.madeira.gov.pt/",
-        "https://geodiversidade.madeira.gov.pt/",
-        "https://gesdsc.madeira.gov.pt/",
-        "https://hcm.madeira.gov.pt/",
-        "https://ifcn.madeira.gov.pt/",
-        "https://instrumentopedia.conservatorioescoladasartes.com/",
-        "https://irig.madeira.gov.pt/",
-        "https://joram.madeira.gov.pt/",
-        "https://juventude.madeira.gov.pt/",
-        "https://lifedunas.madeira.gov.pt/",
-        "https://loja.madeira.gov.pt/",
-        "https://lojacidadao.madeira.gov.pt/",
-        "https://mensageiroebr.madeira.gov.pt/",
-        "https://mosquitoaedes.madeira.gov.pt/",
-        "https://mural-abm.madeira.gov.pt/",
-        "https://museufotografia.madeira.gov.pt/",
-        "https://portalinstalacoeseletricas.madeira.gov.pt/",
-        "https://portalterceirosector.madeira.gov.pt/",
-        "https://portosantobiosfera.madeira.gov.pt/",
-        "https://provedoradmpubregional.madeira.gov.pt/",
-        "https://provedoranimal.madeira.gov.pt/",
-        "https://qualidade.madeira.gov.pt/",
-        "https://raizesdoatlantico.madeira.gov.pt/",
-        "https://regionalizacao-educacaoartistica.madeira.gov.pt/",
-        "https://rpea.madeira.gov.pt/",
-        "https://violenciadomestica.madeira.gov.pt/",
-        "https://apoioescolaronline.madeira.gov.pt/",
-        "https://apram.pt/",
-        "https://marmadeira.madeira.gov.pt/",
-        "https://masi.madeira.gov.pt/",
-        "https://md.madeira.gov.pt/",
-        "https://mqc.madeira.gov.pt/",
-        "https://rumdamadeira.com",
-        "https://sustainableforall.visitmadeira.com",
-        "https://teducativas.madeira.gov.pt/",
-        "https://visitmadeira.pt/",
-        "https://visitportosanto.pt/",
-        "https://www02.madeira-edu.pt/",
-        "https://escolas.madeira-edu.pt/",
-        "https://projectos.madeira-edu.pt/",
-        "https://estatistica.madeira.gov.pt/",
-        "https://qesa.madeira.gov.pt/",
-        "https://dadosabertos.madeira.gov.pt/",
-        "https://rbescolares.madeira.gov.pt/",
-        "https://moodle.madeira.gov.pt/",
-        "https://opram.madeira.gov.pt/",
-        "https://stagingopram.madeira.gov.pt/",
-        "https://simplifica.madeira.gov.pt/",
-        "https://travessa-abm.madeira.gov.pt/"
-    ],
+    sites: sitesData.sites,
     pageSize: 50,
     apiBaseUrl: 'https://arquivo.pt/textsearch',
     outputFile: 'arquivo_pt_sites.xlsx',
